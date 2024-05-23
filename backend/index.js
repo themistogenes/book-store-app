@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 })
 
 // Create book
+// POST: /books
 app.post('/books', async (req, res) => {
   try {
     if (
@@ -32,6 +33,21 @@ app.post('/books', async (req, res) => {
     }
     const book = await Book.create(newBook);
     return res.status(201).send(book);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({message: error.message});
+  }
+})
+
+// Get all books
+// GET: /books
+app.get('/books', async (req, res) => {
+  try {
+    const books = await Book.find({});
+    return res.status(200).json({
+      count: books.length,
+      data: books
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).send({message: error.message});
