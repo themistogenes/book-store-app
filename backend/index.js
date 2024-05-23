@@ -93,6 +93,23 @@ app.put('/books/:id', async (req, res) => {
   }
 })
 
+// Delete book
+// DELETE: /books/:id
+app.delete('/books/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).json({message: 'Book not found'});
+    }
+    await Book.findByIdAndDelete(book.id);
+    return res.status(200).json({message: 'Book deleted'});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({message: error.message});
+  }
+})
+
 mongoose
   .connect(mongoDBURL)
   .then(() => {
