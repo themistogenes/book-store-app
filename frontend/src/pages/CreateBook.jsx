@@ -26,8 +26,8 @@ const CreateBook = () => {
         navigate('/');
       })
       .catch((error) => {
-        console.log(error);
         setLoading(false);
+        console.log(error);
         alert('An error happened.  Please check console.');
       })
   }
