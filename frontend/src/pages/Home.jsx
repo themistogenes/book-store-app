@@ -51,11 +51,11 @@ const Home = () => {
             loading ? (
               <Spinner />
             ) :
-              showType === 'table' ? (
-                <BooksTable books={books} />
-              ) : (
-                <BookCards books={books} />
-              )
+            showType === 'table' ? (
+              <BooksTable books={books} />
+            ) : (
+              <BookCards books={books} />
+            )
           }
       </div>
     </div>
